@@ -1,0 +1,8 @@
+---
+---
+- about
+    - Hi, I'm Atin.
+- links
+    - [github](https://github.com/atinba/)
+    - [linkedin](https://www.linkedin.com/in/atin/)
+    - [stack overflow](https://stackoverflow.com/users/12011589/atin)
