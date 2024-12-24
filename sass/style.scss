@@ -1,40 +1,27 @@
 // -------------- THEME SWITCHER -------------- //
 @mixin dark-appearance {
   filter: invert(1);
-
   img {
     filter: invert(1);
 
-    &.invertable {
-      filter: invert(0);
-    }
+    &.invertable { filter: invert(0); }
   }
 }
 
-body[theme="dark"] {
-  @include dark-appearance;
+body[theme="dark"] { @include dark-appearance; }
+
+
+@media (prefers-color-scheme: light) {
+  body[theme="auto"] { @include dark-appearance; }
 }
-
-
-@media (prefers-color-scheme: dark) {
-  body[theme="auto"] {
-    @include dark-appearance;
-  }
-}
-
 // -------------------------------------------- //
 
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
-html,
-body {
-  background: #fbf1c7;
-}
+html, body { background: white; }
 
-html {
-  height: 100%;
-}
+html { height: 100%; }
 
 body {
   color: black;
@@ -46,81 +33,35 @@ body {
   overflow-wrap: break-word;
 }
 
-header {
-  nav {
-    color: #7c6f64;
-    margin-top: .5rem;
-  }
+.post-meta { text-align: right; }
 
-  hr {
-    background-color: #7c6f64;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-    border: 0;
-    height: 2px;
-  }
-}
+h2, h3, h4, h5, h6 { margin-top: 3rem; }
 
-a {
-  color: #2221e8;
-  text-decoration: none;
-}
+hr { margin: 2rem 0; }
 
-.post-meta {
-  text-align: right;
-}
+p { margin: 1rem 0; }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 3rem;
-}
+li { margin: 0.4rem 0; }
 
-hr {
-  margin: 2rem 0;
-}
-
-p {
-  margin: 1rem 0;
-}
-
-li {
-  margin: 0.4rem 0;
-}
-
-*:target {
-  background: yellow;
-}
+*:target { background: yellow; }
 
 .w {
   max-width: 640px;
   margin: 0 auto;
-  // background-color: white;
-  padding: 0rem 2rem;
+  padding: 4rem 2rem;
 }
 
 hr {
   text-align: center;
   border: 0;
 
-  &:before {
-    content: '/////'
-  }
-
-  &:after {
-    content: attr(data-content) '/////'
-  }
+  &:before { content: '/////' }
+  &:after { content: attr(data-content) '/////' }
 }
 
-table {
-  width: 100%;
-}
+table { width: 100%; }
 
-table,
-th,
-td {
+table, th, td {
   border: thin solid black;
   border-collapse: collapse;
   padding: 0.4rem;
@@ -143,9 +84,7 @@ blockquote {
   border: thin solid black;
   padding: 1rem;
 
-  p {
-    margin: 0;
-  }
+  p { margin: 0; }
 }
 
 img {
@@ -156,18 +95,13 @@ img {
 
 .footnote-definition {
   padding: 0 1rem;
-
   &:target {
     background: yellow;
     color: #212121;
   }
-
   p {
     display: inline;
   }
 }
 
-nav,
-.taxonomies {
-  text-align: center;
-}
+nav, .taxonomies { text-align: center; }

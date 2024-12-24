@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ lang }}">
     <head>
         <meta charset="UTF-8">
         <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
@@ -12,6 +12,22 @@
         {% set title = section.title %}
         {% elif config.title %}
         {% set title = config.title %}
+        {% endif %}
+
+        {% if page.extra.author %}
+        {% set author = page.extra.author %}
+        {% elif section.extra.author %}
+        {% set author = section.extra.author %}
+        {% elif config.extra.author %}
+        {% set author = config.extra.author %}
+        {% endif %}
+
+        {% if page.description %}
+        {% set description = page.description | truncate(length=150) %}
+        {% elif section.description %}
+        {% set description = section.description | truncate(length=150) %}
+        {% elif config.description %}
+        {% set description = config.description | truncate(length=150) %}
         {% endif %}
 
         {% if page.extra.image %}
@@ -33,7 +49,9 @@
         {% if title %}<title>{{ title }}</title>{% endif %}
         {% block metatags %}
         {% if title %}<meta name="title" content="{{ title }}">{% endif %}
+        {% if author %}<meta name="author" content="{{ author }}">{% endif %}
         {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+        <meta name="generator" content="Zola v0.16.1">
 
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url | safe }}">
@@ -41,6 +59,15 @@
         {% if title %}<meta property="og:title" content="{{ title }}">{% endif %}
         {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
         {% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
+
+        {% set twitter_card = config.extra.twitter_card | default(value=true) %}
+        {% if twitter_card != false %}
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url | safe }}">
+        {% if title %}<meta property="twitter:title" content="{{ title }}">{% endif %}
+        {% if description %}<meta property="twitter:description" content="{{ description }}">{% endif %}
+        {% if image %}<meta property="twitter:image" content="{{ image }}">{% endif %}
+        {% endif %}
         
         <link rel="canonical" href="{{ url | safe }}">
         {% if image %}<link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path=config.extra.logo, trailing_slash=false) }}">{% endif %}
@@ -68,25 +95,31 @@
         <link rel="stylesheet" href="{{ get_url(path='style.css', trailing_slash=false) | safe }}"/>
         {% endblock css %}
     </head>
-    <body theme="{{ config.extra.theme }}">
+    <body theme="auto">
         <div class="w">
             <header>
                 {% if config.extra.header_nav %}
                 <nav>
                     {% for nav_item in config.extra.header_nav %}
                     <a href="{{ nav_item.url | safe }}" {% if nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ nav_item.name }}</a>
-                    {% if not nav_item.last %}
-                        -
-                    {% endif %}
                     {% endfor %}
                 </nav>
-                <hr>
                 {% endif %}
                 {% block header %}{% if title %}<h1>{{ config.title }}</h1>{% endif %}{% endblock header %}
             </header>
             <main class="page-content" aria-label="Content">
                 {% block content %}{% endblock content %}
             </main>
+            <footer>
+                {% block footer %}{% endblock footer %}
+                {% if config.extra.footer_nav %}
+                <nav>
+                    {% for nav_item in config.extra.footer_nav %}
+                    <a href="{{ nav_item.url | safe }}">{{ nav_item.name }}</a>
+                    {% endfor %}
+                </nav>
+                {% endif %}
+            </footer>
         </div>
     </body>
 </html>

@@ -1,8 +1,7 @@
 ---
 ---
-- about
-    - Hi, I'm Atin.
+- hey (・_・)ノ
+    - i am atin
 - links
-    - [github](https://github.com/atinba/)
-    - [linkedin](https://www.linkedin.com/in/atin/)
-    - [stack overflow](https://stackoverflow.com/users/12011589/atin)
+    - [github](https://github.com/atinba)
+    - [stackoverflow](https://stackoverflow.com/users/12011589/atin)
