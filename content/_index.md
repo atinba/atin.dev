@@ -1,7 +1,11 @@
 ---
 ---
-- hey (・_・)ノ
-    - i am atin
+- hey (・_・)ノ - i'm atin
+    - love math and physics :D
+    - love teaching math and physics :)
+    - like tinkering with the linux kernel and operating systems
 - links
     - [github](https://github.com/atinba)
     - [stackoverflow](https://stackoverflow.com/users/12011589/atin)
+- extra
+    - built using [zola](https://www.getzola.org/) and [no-style-please](https://github.com/atgumx/no-style-please)
